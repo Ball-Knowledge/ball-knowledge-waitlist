@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ball Knowledge — Coming June 2026</title>
+  <meta name="description" content="The football quiz app that actually tests your knowledge. Duolingo-style daily challenges, five game modes, one obsession. Coming to iOS & Android June 2026.">
+  <meta property="og:title" content="Ball Knowledge — Coming June 2026">
+  <meta property="og:description" content="Five game modes. Daily challenges. One obsession. Join the waitlist.">
+  <meta property="og:image" content="Ball Knowledge Logo.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --blue: #1a56db;
+      --blue-dk: #1240a8;
+      --cyan: #00bcd4;
+      --green: #58cc02;
+      --green-dk: #46a302;
+      --orange: #ff9600;
+      --org-dk: #cc7800;
+      --yellow: #fbbf24;
+      --yel-dk: #d97706;
+      --red: #ff4b4b;
+      --lav: #c084fc;
+      --lav-dk: #9333ea;
+      --off-white: #f7f8ff;
+      --border: #e2e8f0;
+      --txt: #1e293b;
+      --txt-light: #64748b;
+      --font: 'Arial Rounded MT Bold', 'Arial Black', Arial, sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--off-white);
+      color: var(--txt);
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #0f172a 0%, #1e3a8a 50%, #1240a8 100%);
+      padding: 60px 24px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '⚽';
+      position: absolute;
+      font-size: 400px;
+      opacity: 0.04;
+      top: -80px;
+      right: -80px;
+      pointer-events: none;
+    }
+
+    .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .logo-img {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      border: 3px solid rgba(255,255,255,0.2);
+      object-fit: contain;
+      background: rgba(255,255,255,0.1);
+      padding: 6px;
+    }
+    .logo-text {
+      text-align: left;
+    }
+    .logo-name {
+      font-size: 22px;
+      font-weight: 900;
+      background: linear-gradient(180deg, #ef4444 0%, #f97316 50%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(2px 2px 0 #1e3a8a);
+      letter-spacing: 1px;
+    }
+    .logo-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      font-family: Arial, sans-serif;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 6vw, 48px);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      font-weight: 900;
+    }
+    .hero h1 span {
+      color: var(--yellow);
+    }
+    .hero p {
+      font-size: clamp(14px, 3vw, 18px);
+      color: rgba(255,255,255,0.7);
+      max-width: 480px;
+      margin: 0 auto 36px;
+      font-family: Arial, sans-serif;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .coming-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: #78350f;
+      border: 3px solid var(--yel-dk);
+      border-radius: 50px;
+      padding: 8px 24px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      box-shadow: 0 4px 0 var(--yel-dk);
+      margin-bottom: 40px;
+    }
+
+    /* ── EMAIL FORM ── */
+    .form-wrap {
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .form-inner {
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 24px;
+      padding: 28px 24px;
+      backdrop-filter: blur(10px);
+    }
+    .form-inner h2 {
+      color: #fff;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+    .form-inner p {
+      color: rgba(255,255,255,0.6);
+      font-size: 12px;
+      font-family: Arial, sans-serif;
+      margin-bottom: 20px;
+    }
+    .email-row {
+      display: flex;
+      gap: 10px;
+    }
+    .email-input {
+      flex: 1;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 2px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.95);
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+      color: var(--txt);
+      outline: none;
+    }
+    .email-input:focus {
+      border-color: var(--cyan);
+    }
+    .email-input::placeholder {
+      color: #94a3b8;
+    }
+    .submit-btn {
+      background: var(--green);
+      border: 3px solid var(--green-dk);
+      border-radius: 16px;
+      box-shadow: 0 5px 0 var(--green-dk);
+      color: #fff;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 900;
+      padding: 14px 20px;
+      cursor: pointer;
+      transition: all 0.1s;
+      white-space: nowrap;
+    }
+    .submit-btn:active {
+      box-shadow: 0 2px 0 var(--green-dk);
+      transform: translateY(3px);
+    }
+    .privacy-note {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      font-family: Arial, sans-serif;
+      margin-top: 14px;
+    }
+
+    /* ── SUCCESS STATE ── */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 16px;
+    }
+    .success-msg .tick {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    .success-msg h3 {
+      color: var(--green);
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+    .success-msg p {
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+    }
+
+    /* ── VIDEO ── */
+    .video-section {
+      padding: 60px 24px;
+      text-align: center;
+      background: #fff;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-label {
+      font-size: 11px;
+      color: var(--txt-light);
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+    .video-section h2 {
+      font-size: clamp(22px, 4vw, 32px);
+      color: var(--txt);
+      margin-bottom: 32px;
+    }
+    .video-wrap {
+      max-width: 380px;
+      margin: 0 auto;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 3px solid var(--blue);
+      box-shadow: 0 8px 0 var(--blue-dk), 0 20px 60px rgba(26,86,219,0.2);
+      background: #000;
+    }
+    .video-wrap video {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── GAME MODES ── */
+    .modes-section {
+      padding: 60px 24px;
+      text-align: center;
+      background: var(--off-white);
+    }
+    .modes-section h2 {
+      font-size: clamp(22px, 4vw, 32px);
+      color: var(--txt);
+      margin-bottom: 8px;
+    }
+    .modes-section > p {
+      color: var(--txt-light);
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      margin-bottom: 36px;
+    }
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .mode-card {
+      border-radius: 20px;
+      padding: 22px 16px;
+      border: 2px solid;
+      position: relative;
+      overflow: hidden;
+      text-align: left;
+    }
+    .mode-card .watermark {
+      position: absolute;
+      right: -8px;
+      bottom: -8px;
+      font-size: 64px;
+      opacity: 0.08;
+    }
+    .mode-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 12px;
+      background: rgba(255,255,255,0.18);
+      border: 2px solid rgba(255,255,255,0.25);
+    }
+    .mode-card h3 {
+      font-size: 15px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .mode-card p {
+      font-size: 11px;
+      color: rgba(255,255,255,0.75);
+      font-family: Arial, sans-serif;
+      line-height: 1.4;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      padding: 60px 24px;
+      background: #fff;
+      border-bottom: 2px solid var(--border);
+      text-align: center;
+    }
+    .how-section h2 {
+      font-size: clamp(22px, 4vw, 32px);
+      margin-bottom: 40px;
+    }
+    .steps-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .step {
+      flex: 1;
+      min-width: 160px;
+      max-width: 200px;
+    }
+    .step-num {
+      width: 52px;
+      height: 52px;
+      background: var(--blue);
+      border: 3px solid var(--blue-dk);
+      border-radius: 16px;
+      box-shadow: 0 4px 0 var(--blue-dk);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      margin: 0 auto 14px;
+    }
+    .step h3 {
+      font-size: 15px;
+      color: var(--txt);
+      margin-bottom: 6px;
+    }
+    .step p {
+      font-size: 12px;
+      color: var(--txt-light);
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    /* ── SOCIAL PROOF ── */
+    .proof-section {
+      padding: 50px 24px;
+      background: linear-gradient(135deg, var(--blue) 0%, #7c3aed 100%);
+      text-align: center;
+    }
+    .proof-section h2 {
+      font-size: clamp(24px, 5vw, 40px);
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .proof-section p {
+      color: rgba(255,255,255,0.75);
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+    .stat-pills {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .stat-pill {
+      background: rgba(255,255,255,0.12);
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 50px;
+      padding: 10px 22px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(4px);
+    }
+    .stat-pill .num {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--yellow);
+    }
+    .stat-pill .lbl {
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--yellow);
+      border: 3px solid var(--yel-dk);
+      border-radius: 18px;
+      box-shadow: 0 6px 0 var(--yel-dk);
+      color: #78350f;
+      font-family: var(--font);
+      font-size: 16px;
+      font-weight: 900;
+      padding: 16px 36px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.1s;
+    }
+    .cta-btn:active {
+      box-shadow: 0 2px 0 var(--yel-dk);
+      transform: translateY(4px);
+    }
+
+    /* ── PLATFORMS ── */
+    .platform-section {
+      padding: 50px 24px;
+      background: var(--off-white);
+      text-align: center;
+      border-top: 2px solid var(--border);
+    }
+    .platform-section p {
+      color: var(--txt-light);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .platform-badges {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .platform-badge {
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 4px 0 var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--txt);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f172a;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    footer .footer-logo {
+      font-size: 18px;
+      font-weight: 900;
+      background: linear-gradient(180deg, #ef4444 0%, #f97316 50%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+    footer p {
+      color: rgba(255,255,255,0.35);
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+    footer a {
+      color: rgba(255,255,255,0.5);
+    }
+
+    @media (max-width: 480px) {
+      .email-row { flex-direction: column; }
+      .submit-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="logo-wrap">
+      <img src="Ball Knowledge Logo no background.png" alt="Ball Knowledge" class="logo-img"
+           onerror="this.style.display='none'">
+      <div class="logo-text">
+        <div class="logo-name">BALL KNOWLEDGE</div>
+        <div class="logo-sub">THE FOOTBALL BRAIN TEST</div>
+      </div>
+    </div>
+
+    <div class="coming-badge">🗓 COMING JUNE 2026</div>
+
+    <h1>The football quiz app<br>that <span>actually</span> tests you.</h1>
+    <p>Five game modes. Daily challenges. Streaks, stats, and leaderboards.
+       Built for fans who know their football — and want to prove it.</p>
+
+    <div class="form-wrap">
+      <div class="form-inner">
+        <div id="form-state">
+          <h2>🔔 Join the waitlist</h2>
+          <p>Be first to know when Ball Knowledge drops. No spam. Ever.</p>
+          <div class="email-row">
+            <input type="email" class="email-input" id="email-input"
+                   placeholder="your@email.com" autocomplete="email">
+            <button class="submit-btn" onclick="handleSignup()">NOTIFY ME →</button>
+          </div>
+          <p class="privacy-note">🔒 No spam. Unsubscribe any time.</p>
+          <p id="error-msg" style="display:none;color:#ff4b4b;font-family:Arial;font-size:12px;margin-top:10px;text-align:center;">⚠️ Must be opened from a hosted URL to submit — upload to GitHub Pages first.</p>
+        </div>
+        <div class="success-msg" id="success-state">
+          <div class="tick">✅</div>
+          <h3>You're on the list!</h3>
+          <p>We'll email you the moment Ball Knowledge goes live.<br>
+             Get ready — it's coming this summer. ⚽</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VIDEO ── -->
+  <section class="video-section">
+    <div class="section-label">SEE IT IN ACTION</div>
+    <h2>⚽ Watch Ball Knowledge</h2>
+    <div class="video-wrap">
+      <!-- REPLACE src WITH YOUR PROMO VIDEO FILE OR YOUTUBE EMBED -->
+      <video controls poster="Coming June 2026.png" playsinline>
+        <source src="bk promo.mp4" type="video/mp4">
+        <!-- Fallback if video doesn't load -->
+        <img src="Coming June 2026.png" alt="Ball Knowledge — Coming June 2026" style="width:100%">
+      </video>
+    </div>
+  </section>
+
+  <!-- ── GAME MODES ── -->
+  <section class="modes-section">
+    <div class="section-label">FIVE WAYS TO PLAY</div>
+    <h2>Pick your challenge</h2>
+    <p>Each mode tests a different part of your football brain.</p>
+
+    <div class="modes-grid">
+      <div class="mode-card" style="background:#1a56db;border-color:#1240a8;box-shadow:0 6px 0 #1240a8">
+        <div class="watermark">🏆</div>
+        <div class="mode-icon">🏆</div>
+        <h3>Top 10</h3>
+        <p>Name 10 players from a squad, era, or stat list before you run out of lives.</p>
+      </div>
+      <div class="mode-card" style="background:#ff9600;border-color:#cc7800;box-shadow:0 6px 0 #cc7800">
+        <div class="watermark">🎯</div>
+        <div class="mode-icon">🎯</div>
+        <h3>Pointless</h3>
+        <p>The less popular your answer, the more points you score. Think obscure.</p>
+      </div>
+      <div class="mode-card" style="background:#00bcd4;border-color:#0097a7;box-shadow:0 6px 0 #0097a7">
+        <div class="watermark">🗺️</div>
+        <div class="mode-icon">🗺️</div>
+        <h3>Career Path</h3>
+        <p>Follow the clues through a player's career. Guess who before the trail ends.</p>
+      </div>
+      <div class="mode-card" style="background:#c084fc;border-color:#9333ea;box-shadow:0 6px 0 #9333ea">
+        <div class="watermark">🕵️</div>
+        <div class="mode-icon">🕵️</div>
+        <h3>Who Am I?</h3>
+        <p>Clues reveal one by one. The sooner you guess, the bigger the reward.</p>
+      </div>
+      <div class="mode-card" style="background:#ff4b4b;border-color:#cc0000;box-shadow:0 6px 0 #cc0000">
+        <div class="watermark">⚡</div>
+        <div class="mode-icon">⚡</div>
+        <h3>True or False</h3>
+        <p>Eight fast-fire football facts. Think you know the game? Prove it.</p>
+      </div>
+      <div class="mode-card" style="background:#58cc02;border-color:#46a302;box-shadow:0 6px 0 #46a302">
+        <div class="watermark">📅</div>
+        <div class="mode-icon">📅</div>
+        <h3>Daily Challenge</h3>
+        <p>One new game every day. Build your streak. Climb the leaderboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="how-section">
+    <div class="section-label">HOW IT WORKS</div>
+    <h2>Simple. Addictive. Daily.</h2>
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Open the app</h3>
+        <p>Pick today's Daily Challenge or choose your mode from the game grid.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Test your knowledge</h3>
+        <p>Type answers with smart autocomplete. No random guessing — real football knowledge only.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Build your streak</h3>
+        <p>Come back tomorrow. Climb the leaderboard. Prove you're the real deal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOCIAL PROOF / SECOND CTA ── -->
+  <section class="proof-section">
+    <h2>Built for real fans.</h2>
+    <p>Ball Knowledge rewards knowledge, not luck. If you know your football, you'll love it.</p>
+
+    <div class="stat-pills">
+      <div class="stat-pill">
+        <span class="num">5</span>
+        <span class="lbl">GAME MODES</span>
+      </div>
+      <div class="stat-pill">
+        <span class="num">25+</span>
+        <span class="lbl">DAILY THEMES</span>
+      </div>
+      <div class="stat-pill">
+        <span class="num">1,000+</span>
+        <span class="lbl">PLAYERS IN DB</span>
+      </div>
+      <div class="stat-pill">
+        <span class="num">🏆</span>
+        <span class="lbl">WORLD CUP READY</span>
+      </div>
+    </div>
+
+    <a href="#" class="cta-btn" onclick="document.getElementById('email-input').scrollIntoView({behavior:'smooth'});event.preventDefault();">
+      JOIN THE WAITLIST — IT'S FREE →
+    </a>
+  </section>
+
+  <!-- ── PLATFORMS ── -->
+  <section class="platform-section">
+    <p>COMING TO</p>
+    <div class="platform-badges">
+      <div class="platform-badge">
+        <span style="font-size:24px">🍎</span>
+        <span>iOS — App Store</span>
+      </div>
+      <div class="platform-badge">
+        <span style="font-size:24px">🤖</span>
+        <span>Android — Google Play</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">BALL KNOWLEDGE</div>
+    <p>
+      The Football Brain Test<br>
+      © 2026 Ball Knowledge. All rights reserved.<br>
+      <a href="mailto:nick_moore458@hotmail.co.uk">Contact</a>
+    </p>
+  </footer>
+
+  <script>
+    const SUPABASE_URL = 'https://cslbibwzxcqnxsvfzrgi.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_CoxObogAzXul6xLaMdTfhQ_-87icYFR';
+
+    async function handleSignup() {
+      const emailInput = document.getElementById('email-input');
+      const email = emailInput.value.trim();
+      const btn = document.querySelector('.submit-btn');
+
+      if (!email || !email.includes('@')) {
+        emailInput.style.borderColor = '#ff4b4b';
+        emailInput.focus();
+        return;
+      }
+
+      // Disable button while submitting
+      btn.textContent = 'SENDING...';
+      btn.style.opacity = '0.7';
+      btn.style.pointerEvents = 'none';
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ email })
+        });
+
+        if (res.ok || res.status === 201) {
+          document.getElementById('form-state').style.display = 'none';
+          document.getElementById('success-state').style.display = 'block';
+        } else {
+          const body = await res.text();
+          throw new Error('HTTP ' + res.status + ': ' + body);
+        }
+      } catch (err) {
+        btn.textContent = 'NOTIFY ME →';
+        btn.style.opacity = '1';
+        btn.style.pointerEvents = 'auto';
+        const errMsg = document.getElementById('error-msg');
+        if (errMsg) {
+          errMsg.textContent = '⚠️ ' + err.message;
+          errMsg.style.display = 'block';
+        }
+        console.error('Signup error:', err);
+      }
+    }
+
+    // Allow pressing Enter in email field
+    document.getElementById('email-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleSignup();
+    });
+  </script>
+</body>
+</html>
